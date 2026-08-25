@@ -1,0 +1,51 @@
+radio_dir: Y:\20260603-XuanHao
+task_type: Habitat+SHAP
+task_column: label
+auto__label_file:
+  - split_info\label-RND-0.csv
+  - split_info\label-RND-1.csv
+  - split_info\label-RND-2.csv
+  - split_info\label-RND-3.csv
+  - split_info\label-RND-4.csv 
+  - split_info\label-RND-5.csv
+  - split_info\label-RND-6.csv
+  - split_info\label-RND-7.csv
+  - split_info\label-RND-8.csv
+  - split_info\label-RND-9.csv 
+# label_file: split_info\label-RND-9.csv
+label_file: group.csv
+clinic_file: Y:\20260603-XuanHao\Clinical.csv
+survival_file: Y:\20260603-XuanHao\Survival.csv
+
+ml_models:
+#   - LR
+#   - KNN
+  - RandomForest
+  - ExtraTrees
+  - XGBoost
+  - LightGBM
+  - SVM
+label_mapping: 
+  0: L0
+  1: L1
+extractor_settings: custom_settings\exampleMR.yaml
+subsets: [train, val, test]
+modals: [MR]
+
+summary_models: [Clinical, Radiomics, Peri3mm, Habitat, Combined]
+sel_model:
+  Clinical: ExtraTrees
+  Radiomics: XGBoost
+  Habitat: ExtraTrees
+  Peri3mm: RandomForest
+  Combined: Nomo
+display.linestyle: [-]
+metric_spec: AUC
+metric_spec_ids: 
+metric_spec_agg: mean
+save_dir: viz
+font.size: 12
+# use_youden: True
+
+display.colors: Set1
+display.linestyle: [-]
